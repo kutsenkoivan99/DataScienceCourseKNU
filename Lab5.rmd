@@ -1,0 +1,42 @@
+---
+title: "Lab5"
+output: html_document
+---
+1. **Написати функцію pmean, яка обчислює середнє значення (mean) забруднення сульфатами або нітратами серед заданого переліка моніторів.**
+```{R}
+source("pmean.R")
+pmean("specdata", "sulfate", 1:10)
+```
+```{R}
+pmean("specdata", "sulfate", 55)
+```
+```{R}
+pmean("specdata", "nitrate")
+```
+2.**Написати функцію complete, яка виводить кількість повних спостережень (the number of completely observed cases) для кожного файлу.**
+
+```{R}
+complete("specdata", 1)
+```
+
+```{R}
+complete("specdata", c(2, 4, 8, 10, 12))
+```
+
+```{R}
+complete("specdata", 50:60)
+```
+
+3.**Написати функцію corr, яка приймає два аргументи: directory (папка, де знаходяться файли спостережень) та threshold (порогове значення, за замовчуванням дорівнює 0) та обчислює кореляцію між сульфатами та нітратами для моніторів, кількість повних спостережень для яких більше порогового значення.**
+```{R}
+cr <- corr("specdata", 150)
+head(cr); summary(cr)
+```
+```{R}
+cr <- corr("specdata", 400)
+head(cr); summary(cr)
+```
+```{R}
+cr <- corr("specdata", 5000)
+head(cr); summary(cr); length(cr)
+```

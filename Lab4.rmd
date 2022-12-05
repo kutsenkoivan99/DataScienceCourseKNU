@@ -1,0 +1,60 @@
+---
+title: "Lab4"
+output: html_document
+---
+
+1.  **Які назви стовпців файлу даних?**
+
+```{R}
+csv <- read.csv("hw1_data.csv")
+colnames(csv)
+```
+
+2.  **Виведіть перші 6 строк фрейму даних.**
+
+```{R}
+head(csv, 6)
+```
+
+3.  **Скільки спостерігань (строк) в дата фреймі?**
+
+```{R}
+nrow(csv)
+```
+
+4.  **Виведіть останні 10 строк дата фрейму.**
+
+```{R}
+tail(csv, 10)
+```
+
+5.  **Як багато значень «NA» в стовпці «Ozone»?**
+
+```{R}
+length(which(is.na(csv$Ozone)))
+```
+
+6.  **Яке середнє (mean) стовпця «Ozone». Виключити «NA» значення.**
+
+```{R}
+mean(csv$Ozone[!is.na(csv$Ozone)])
+```
+
+7.  **Виведіть частину набору даних (subset) зі значенням «Ozone» \> 31 та «Temp» \> 90. Яке середнє (mean) значень «Solar.R» в цьому наборі даних (subset)?**
+
+```{R}
+subset(csv, (csv$Ozone > 31) & (csv$Temp > 90))
+mean(subset(csv, (csv$Ozone > 31) & (csv$Temp > 90))$Solar.R)
+```
+
+8.  **Яке середнє значення (mean) для «Temp» для червня («Month» дорівнює 6)?**
+
+```{R}
+mean(subset(csv, (csv$Month == 6))$Temp, na.rm = TRUE)
+```
+
+9.  **Яке максимальне значення «Ozone» для травня («Month» дорівнює 5)?**
+
+```{R}
+max(subset(csv, (csv$Month == 5))$Ozone, na.rm = TRUE)
+```
